@@ -6,68 +6,34 @@
   <title>Comune Oliveto Lario</title>
   <style>
     :root {
-      --bg: #f6f7fb;
-      --card: #ffffff;
-      --text: #111827;
-      --muted: #6b7280;
-      --primary: #2563eb;
-      --primary-600: #1d4ed8;
-      --ring: rgba(37, 99, 235, .35);
-      --ok: #065f46;
-      --error: #b91c1c;
+      --bg1:#f8fafc; --bg2:#eef2ff; --card:#fff; --text:#111827; --muted:#6b7280;
+      --primary:#2563eb; --primary-600:#1d4ed8; --ring:rgba(37,99,235,.35);
+      --ok:#065f46; --error:#b91c1c;
     }
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0; background: linear-gradient(180deg, #f8fafc, #eef2ff 60%);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans";
-      color: var(--text);
-      display: grid; place-items: center; padding: 1.25rem;
-    }
-    .card {
-      width: 100%; max-width: 640px; background: var(--card);
-      border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,.08);
-      padding: 1.25rem; overflow: hidden;
-    }
-    .header { display: flex; gap: .75rem; align-items: center; margin-bottom: .5rem; }
-    .logo { width: 42px; height: 42px; border-radius: 12px; background: radial-gradient(circle at 30% 30%, #93c5fd, #3b82f6); box-shadow: inset 0 0 0 2px rgba(255,255,255,.6); }
-    h1 { font-size: 1.25rem; margin: 0; }
-    p.sub { margin: .25rem 0 0 0; color: var(--muted); font-size: .95rem; }
-
-    .field { margin-top: 1rem; }
-    label { display: block; font-weight: 600; margin-bottom: .5rem; }
-
-    /* --- Select super semplice ma "carino" e PIÙ ALTO --- */
-    .select-wrap { position: relative; }
-    select {
-      width: 100%; font-size: 1.05rem; padding: 1.1rem 3rem 1.1rem 1rem; /* più alto */
-      border-radius: 14px; border: 1px solid #e5e7eb; background: #fff; outline: none;
-      appearance: none; -webkit-appearance: none; -moz-appearance: none;
-      transition: box-shadow .15s, border-color .15s, transform .05s;
-    }
-    select:focus { border-color: var(--primary); box-shadow: 0 0 0 6px var(--ring); }
-    .select-wrap::after { /* freccina */
-      content: ""; position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
-      border: 6px solid transparent; border-top-color: #6b7280; pointer-events: none;
-    }
-
-    input[type="text"] {
-      width: 100%; font-size: 1.05rem; padding: 1.05rem 1rem; /* più alto */
-      border-radius: 14px; border: 1px solid #e5e7eb; background: #fff; outline: none;
-      transition: box-shadow .15s, border-color .15s, transform .05s;
-    }
-    input[type="text"]:focus { border-color: var(--primary); box-shadow: 0 0 0 6px var(--ring); }
-
-    .actions { margin-top: 1rem; display: flex; gap: .75rem; }
-    .btn { appearance: none; cursor: pointer; border: none; border-radius: 14px; padding: 1rem 1.25rem; font-size: 1.05rem; font-weight: 700; letter-spacing: .2px; background: var(--primary); color: #fff; box-shadow: 0 8px 16px rgba(37,99,235,.25); transition: transform .06s ease, background .15s ease, box-shadow .15s ease; }
-    .btn:active { transform: translateY(1px); }
-    .btn:hover { background: var(--primary-600); box-shadow: 0 10px 22px rgba(37,99,235,.3); }
-
-    .msg { min-height: 1.2em; margin-top: .5rem; font-weight: 600; }
-    .msg.ok { color: var(--ok); }
-    .msg.err { color: var(--error); }
-
-    footer { margin-top: 1rem; text-align: center; font-size: .85rem; color: var(--muted); }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:linear-gradient(180deg,var(--bg1),var(--bg2) 60%);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,"Noto Sans";color:var(--text);display:grid;place-items:center;padding:20px}
+    .card{width:100%;max-width:640px;background:var(--card);border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:20px}
+    .header{display:flex;gap:12px;align-items:center;margin-bottom:8px}
+    .logo{width:42px;height:42px;border-radius:12px;background:radial-gradient(circle at 30% 30%,#93c5fd,#3b82f6);box-shadow:inset 0 0 0 2px rgba(255,255,255,.6)}
+    h1{font-size:20px;margin:0}
+    p.sub{margin:.25rem 0 0 0;color:var(--muted);font-size:.95rem}
+    .field{margin-top:16px}
+    label{display:block;font-weight:600;margin-bottom:8px}
+    .select-wrap{position:relative}
+    select{width:100%;font-size:1.05rem;padding:18px 44px 18px 16px;border-radius:14px;border:1px solid #e5e7eb;background:#fff;outline:none;appearance:none;-webkit-appearance:none;-moz-appearance:none;transition:box-shadow .15s,border-color .15s,transform .05s}
+    select:focus{border-color:var(--primary);box-shadow:0 0 0 6px var(--ring)}
+    .select-wrap::after{content:"";position:absolute;right:14px;top:50%;transform:translateY(-50%);border:6px solid transparent;border-top-color:#6b7280;pointer-events:none}
+    input[type=text]{width:100%;font-size:1.05rem;padding:18px 16px;border-radius:14px;border:1px solid #e5e7eb;background:#fff;outline:none;transition:box-shadow .15s,border-color .15s,transform .05s}
+    input[type=text]:focus{border-color:var(--primary);box-shadow:0 0 0 6px var(--ring)}
+    .actions{margin-top:16px;display:flex;gap:12px}
+    .btn{appearance:none;cursor:pointer;border:none;border-radius:14px;padding:16px 20px;font-size:1.05rem;font-weight:700;letter-spacing:.2px;background:var(--primary);color:#fff;box-shadow:0 8px 16px rgba(37,99,235,.25);transition:transform .06s ease,background .15s ease,box-shadow .15s ease}
+    .btn:hover{background:var(--primary-600);box-shadow:0 10px 22px rgba(37,99,235,.3)}
+    .btn:active{transform:translateY(1px)}
+    .msg{min-height:1.2em;margin-top:8px;font-weight:600}
+    .msg.ok{color:var(--ok)}
+    .msg.err{color:var(--error)}
+    footer{margin-top:12px;text-align:center;font-size:.85rem;color:var(--muted)}
   </style>
 </head>
 <body>
@@ -82,27 +48,21 @@
 
     <div class="field">
       <label for="key">Struttura (nome temporaneo)</label>
-      <div class="select-wrap">
-        <select id="key" aria-describedby="keyHelp"></select>
-      </div>
+      <div class="select-wrap"><select id="key"></select></div>
     </div>
 
     <div class="field">
       <label for="value">Nome reale</label>
       <input id="value" type="text" placeholder="Es. Casa al Lago" autocomplete="name" />
-      <div class="actions">
-        <button id="save" type="button" class="btn">Salva</button>
-      </div>
+      <div class="actions"><button id="save" type="button" class="btn">Salva</button></div>
       <p class="msg" id="msg" aria-live="polite"></p>
     </div>
 
-    <footer>Le tue modifiche restano salvate in questo dispositivo.</footer>
+    <footer>Le modifiche restano salvate su questo dispositivo.</footer>
   </main>
 
   <script>
-    // ===== Config minimal =====
-    // Il JSON con i nomi temporanei viene caricato automaticamente all'apertura della pagina.
-    // Metti il tuo file accanto a index.html e lascia il path relativo qui sotto.
+    // ===== Config =====
     const DEFAULT_SRC = 'https://fulviogilardoni.github.io/comune_olivetolario/temp_names.json';
 
     // ===== Stato =====
@@ -119,97 +79,92 @@
     function saveMap(m){ localStorage.setItem(STORAGE_KEY, JSON.stringify(m)); }
 
     function normalizeToNames(data){
-      const unwrap = (x) => Array.isArray(x) ? x : (x && typeof x==='object' && (Array.isArray(x.items)||Array.isArray(x.data)) ? (x.items||x.data) : x);
+      const unwrap = (x)=> Array.isArray(x) ? x : (x && typeof x==='object' && (Array.isArray(x.items)||Array.isArray(x.data)) ? (x.items||x.data) : x);
       const arr = unwrap(data);
       if (!Array.isArray(arr)) throw new Error('Formato JSON non valido');
       const out = [];
-      for (const it of arr){
-        if (typeof it === 'string') out.push(it.trim());
-        else if (it && typeof it === 'object'){
+      for (let i=0;i<arr.length;i++){
+        const it = arr[i];
+        if (typeof it === 'string') { const s = it.trim(); if(s) out.push(s); continue; }
+        if (it && typeof it === 'object'){
           const cand = ['nome','name','denominazione','struttura','label','value','titolo'];
-          let s = null; for (const k of cand){ if (typeof it[k]==='string' && it[k].trim()){ s = it[k].trim(); break; } }
+          let s = null; for (let k=0;k<cand.length;k++){ const ck=cand[k]; if (typeof it[ck]==='string' && it[ck].trim()){ s = it[ck].trim(); break; } }
           if (!s){ for (const k in it){ if (typeof it[k]==='string' && it[k].trim()){ s = it[k].trim(); break; } } }
           if (s) out.push(s);
         }
       }
-      return Array.from(new Set(out.filter(Boolean))).sort((a,b)=>a.localeCompare(b));
+      // dedup + sort
+      const set = Object.create(null); const unique = [];
+      for (let i=0;i<out.length;i++){ const v=out[i]; if(!set[v]){ set[v]=1; unique.push(v); } }
+      unique.sort(function(a,b){ return a.localeCompare(b); });
+      return unique;
     }
 
     function fillSelect(){
-      // Costruisci le option con il DOM (niente innerHTML) per evitare errori di parsing
-      // se nei nomi compaiono caratteri speciali o sequenze come </script>
-      if (!TEMP_NAMES || TEMP_NAMES.length === 0){
+      // Costruzione DOM sicura (niente innerHTML)
+      while (keySel.firstChild) keySel.removeChild(keySel.firstChild);
+      if (!TEMP_NAMES || TEMP_NAMES.length===0){
+        keySel.disabled = true;
         msg.className = 'msg err';
-        msg.textContent = 'Nessuna struttura trovata nel file.';
-        keySel.innerHTML = '';
+        msg.textContent = 'Nessuna struttura trovata.';
         return;
       }
-      // Svuota e riempi in modo sicuro
-      while (keySel.firstChild) keySel.removeChild(keySel.firstChild);
+      keySel.disabled = false;
       const frag = document.createDocumentFragment();
-      for (const n of TEMP_NAMES){
+      for (let i=0;i<TEMP_NAMES.length;i++){
+        const n = TEMP_NAMES[i];
         const opt = document.createElement('option');
-        opt.value = n;
-        opt.textContent = n; // sicuro, niente HTML
-        frag.appendChild(opt);
+        opt.value = n; opt.textContent = n; frag.appendChild(opt);
       }
       keySel.appendChild(frag);
-      msg.className = 'msg';
-      msg.textContent = '';
+      msg.className = 'msg'; msg.textContent = '';
     }
-      keySel.innerHTML = TEMP_NAMES.map(n=>`<option>${n}</option>`).join('');
-      msg.className = 'msg';
-      msg.textContent = '';
-    }</option>`).join(''); }
-    function syncValue(){ const map = loadMap(); valInput.value = map[keySel.value] ?? ''; msg.textContent=''; }
-    function ok(t){ msg.className = 'msg ok'; msg.textContent = t; setTimeout(()=> { if (msg.classList.contains('ok')) msg.textContent=''; }, 1500); }
+
+    function syncValue(){ const map = loadMap(); valInput.value = map[keySel.value] || ''; msg.textContent=''; }
+    function ok(t){ msg.className = 'msg ok'; msg.textContent = t; setTimeout(()=>{ if (msg.classList.contains('ok')) msg.textContent=''; }, 1500); }
 
     async function loadNames(){
-      // Prova più URL e supporta anche file di testo semplice (una struttura per riga)
-      const candidates = [
-        'https://fulviogilardoni.github.io/comune_olivetolario/temp_names.json',
-        DEFAULT_SRC,
-        location.origin + '/comune_olivetolario/temp_names.json',
-        location.origin + location.pathname.replace(/\/[^/]*$/, '/') + 'temp_names.json',
-        'https://raw.githubusercontent.com/fulviogilardoni/comune_olivetolario/main/temp_names.json'
-      ];
-      let lastErr = null;
-      for (const url of candidates){
-        try {
-          const res = await fetch(url + (url.includes('?') ? '&' : '?') + 't=' + Date.now(), { cache: 'no-store' });
-          if (!res.ok) throw new Error('HTTP '+res.status);
-          const txt = await res.text();
-          let data;
-          try { data = JSON.parse(txt); }
-          catch { // fallback: testo semplice
-            data = txt.split(/
+      // Cache-buster per evitare versioni vecchie
+      const url = DEFAULT_SRC + (DEFAULT_SRC.indexOf('?')>-1 ? '&' : '?') + 't=' + Date.now();
+      let txt;
+      try {
+        const res = await fetch(url, { cache:'no-store' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        txt = await res.text();
+      } catch(e){
+        msg.className = 'msg err';
+        msg.textContent = 'Impossibile leggere l\'elenco strutture.';
+        console.warn('fetch error', e);
+        return;
+      }
+
+      let data;
+      try { data = JSON.parse(txt); }
+      catch { data = txt.split(/
 ?
-/).map(s=>s.trim()).filter(Boolean);
-          }
-          TEMP_NAMES = normalizeToNames(data);
-          if (TEMP_NAMES.length === 0) throw new Error('Lista vuota');
-          fillSelect();
-          syncValue();
-          return;
-        } catch(e){ lastErr = e; }
+/).map(function(s){ return s.trim(); }).filter(function(s){ return !!s; }); }
+
+      try {
+        TEMP_NAMES = normalizeToNames(data);
+      } catch(e){
+        msg.className = 'msg err';
+        msg.textContent = 'Formato elenco non valido.';
+        console.warn('normalize error', e);
+        return;
       }
-      msg.className = 'msg err';
-      if (location.protocol === 'file:') {
-        msg.textContent = 'Non posso leggere i dati se la pagina è aperta come file. Aprila via http/https.';
-      } else {
-        msg.textContent = 'Non riesco a caricare l\'elenco strutture. Controlla l\'URL o il formato del file.';
-      }
-      console.warn('Errore caricamento', lastErr);
+
+      fillSelect();
+      if (TEMP_NAMES.length>0) syncValue();
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      loadNames().catch(e => msg.textContent = 'Errore caricamento dati');
-
+    document.addEventListener('DOMContentLoaded', function(){
+      loadNames();
       keySel.addEventListener('change', syncValue);
-      valInput.addEventListener('keydown', (ev)=>{ if(ev.key==='Enter'){ $('#save').click(); }});
-      $('#save').addEventListener('click', () => {
-        const k = keySel.value.trim();
-        const v = valInput.value.trim();
+      valInput.addEventListener('keydown', function(ev){ if (ev.key==='Enter'){ document.getElementById('save').click(); }});
+      document.getElementById('save').addEventListener('click', function(){
+        const k = keySel.value || '';
+        const v = (valInput.value || '').trim();
+        if (!k) return;
         const map = loadMap();
         map[k] = v; saveMap(map); ok('✓ Salvato');
       });

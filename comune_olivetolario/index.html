@@ -3,213 +3,156 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Case Vacanza – Rinominatore semplice</title>
+  <title>Rinomina Struttura</title>
   <style>
-    :root { font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans"; }
-    body { margin: 2rem; max-width: 900px; }
-    h1 { font-size: 1.25rem; margin-bottom: .25rem; }
-    p.lead { color: #444; margin-top: 0; }
-    .field { display: grid; grid-template-columns: 1fr; gap: .5rem; margin: 1rem 0 1.5rem; }
-    label { font-weight: 600; }
-    select, input[type="text"], button { font-size: 1rem; padding: .55rem .6rem; }
-    .actions { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .25rem; }
-    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
-    th, td { border: 1px solid #ddd; padding: .5rem .6rem; vertical-align: middle; }
-    th { text-align: left; background: #fafafa; }
-    .msg { min-height: 1.2em; color: #166534; margin-top: .5rem; }
-    .row-actions { display: flex; gap: .25rem; }
-    .small { font-size: .9rem; color: #666; }
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --primary: #2563eb;
+      --primary-600: #1d4ed8;
+      --ring: rgba(37, 99, 235, .35);
+      --ok: #065f46;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; background: linear-gradient(180deg, #f8fafc, #eef2ff 60%);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans";
+      color: var(--text);
+      display: grid; place-items: center; padding: 1.25rem;
+    }
+    .card {
+      width: 100%; max-width: 640px; background: var(--card);
+      border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,.08);
+      padding: 1.25rem; overflow: hidden;
+    }
+    .header {
+      display: flex; gap: .75rem; align-items: center; margin-bottom: .5rem;
+    }
+    .logo {
+      width: 42px; height: 42px; border-radius: 12px;
+      background: radial-gradient(circle at 30% 30%, #93c5fd, #3b82f6);
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,.6);
+    }
+    h1 { font-size: 1.25rem; margin: 0; }
+    p.sub { margin: .25rem 0 0 0; color: var(--muted); font-size: .95rem; }
+
+    .field { margin-top: 1rem; }
+    label { display: block; font-weight: 600; margin-bottom: .4rem; }
+    select, input[type="text"] {
+      width: 100%; font-size: 1.05rem; padding: .9rem 1rem; border-radius: 14px;
+      border: 1px solid #e5e7eb; background: #fff; outline: none;
+      transition: box-shadow .15s, border-color .15s, transform .05s;
+    }
+    select:focus, input[type="text"]:focus {
+      border-color: var(--primary); box-shadow: 0 0 0 6px var(--ring);
+    }
+
+    .actions { margin-top: 1rem; display: flex; gap: .75rem; }
+    .btn {
+      appearance: none; cursor: pointer; border: none; border-radius: 14px;
+      padding: .9rem 1.2rem; font-size: 1.05rem; font-weight: 700; letter-spacing: .2px;
+      background: var(--primary); color: #fff; box-shadow: 0 8px 16px rgba(37,99,235,.25);
+      transition: transform .06s ease, background .15s ease, box-shadow .15s ease;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn:hover { background: var(--primary-600); box-shadow: 0 10px 22px rgba(37,99,235,.3); }
+
+    .msg { min-height: 1.2em; margin-top: .5rem; color: var(--ok); font-weight: 600; }
+
+    footer { margin-top: 1rem; text-align: center; font-size: .85rem; color: var(--muted); }
   </style>
 </head>
 <body>
-  <h1>Case Vacanza – Associa nome temporaneo → nome corretto</h1>
-  <p class="lead">All'apertura del sito i nomi temporanei vengono caricati <strong>automaticamente</strong> dal tuo JSON (nessuna azione manuale). Puoi opzionalmente passare <code>?src=https://...</code> per sovrascrivere la sorgente.</p>
-
-  <!-- RIGA 1 -->
-  <div class="field">
-    <label for="key">Nome temporaneo</label>
-    <select id="key"></select>
-  </div>
-
-  <!-- RIGA 2 -->
-  <div class="field">
-    <label for="value">Nome corretto</label>
-    <input id="value" type="text" placeholder="Scrivi il nome ufficiale/corretto…" />
-    <div class="actions">
-      <button id="save" type="button">Salva</button>
-      <button id="clearOne" type="button" title="Cancella solo la voce selezionata">Cancella</button>
-      <button id="exportJson" type="button" title="Scarica il mapping JSON vecchio→nuovo">Esporta mapping JSON</button>
-      <button id="exportCsv" type="button" title="Scarica il mapping CSV vecchio→nuovo">Esporta mapping CSV</button>
+  <main class="card" role="main">
+    <div class="header">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1>Rinomina la tua struttura</h1>
+        <p class="sub">Seleziona la struttura, scrivi il nome reale e premi <strong>Salva</strong>.</p>
+      </div>
     </div>
-    <p class="msg" id="msg"></p>
-  </div>
 
-  <!-- TABELLA COMPLETA -->
-  <table id="tbl">
-    <thead>
-      <tr>
-        <th style="width:45%">Nome temporaneo</th>
-        <th>Nome corretto</th>
-        <th style="width:1%">&nbsp;</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+    <div class="field">
+      <label for="key">Struttura (nome temporaneo)</label>
+      <select id="key" aria-describedby="keyHelp"></select>
+    </div>
 
-  <p class="small">Il mapping è salvato localmente nel browser (<code>localStorage</code>). Per ambienti multi-utente collega a Firestore o a una Minimal API. Se il JSON è su un altro dominio, abilita il <em>CORS</em>.</p>
+    <div class="field">
+      <label for="value">Nome reale</label>
+      <input id="value" type="text" placeholder="Es. Casa al Lago" autocomplete="name" />
+      <div class="actions">
+        <button id="save" type="button" class="btn">Salva</button>
+      </div>
+      <p class="msg" id="msg" aria-live="polite"></p>
+    </div>
+
+    <footer>Le tue modifiche restano salvate in questo dispositivo.</footer>
+  </main>
 
   <script>
-    // === Sorgente fissa ===
-    // Metti il tuo file JSON nello stesso repository del sito e aggiorna il path qui sotto.
-    // Esempio: './temp_names.json' (consigliato). In alternativa un URL assoluto (necessita CORS).
+    // ===== Config minimal =====
+    // Il JSON con i nomi temporanei viene caricato automaticamente all'apertura della pagina.
+    // Metti il tuo file accanto a index.html e lascia il path relativo qui sotto.
     const DEFAULT_SRC = './temp_names.json';
 
-    // === Stato ===
-    let TEMP_NAMES = [];            // viene popolato dal tuo JSON
-    const STORAGE_KEY = "cv-mapping"; // { oldName: newName }
+    // ===== Stato =====
+    let TEMP_NAMES = [];
+    const STORAGE_KEY = 'cv-mapping'; // { oldName: newName }
 
-    const $ = (sel) => document.querySelector(sel);
-    const keySel = $("#key");
-    const valInput = $("#value");
-    const msg = $("#msg");
-    const tblBody = document.querySelector("#tbl tbody");
+    // ===== Helpers =====
+    const $ = (s) => document.querySelector(s);
+    const keySel = $('#key');
+    const valInput = $('#value');
+    const msg = $('#msg');
 
-    // === Persistenza locale del mapping ===
-    function loadMap() {
-      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; }
-    }
-    function saveMap(map) { localStorage.setItem(STORAGE_KEY, JSON.stringify(map)); }
+    function loadMap(){ try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; } }
+    function saveMap(m){ localStorage.setItem(STORAGE_KEY, JSON.stringify(m)); }
 
-    // === Parsing flessibile del JSON in ingresso ===
-    function normalizeToNames(data) {
-      // Accetta: ["A", "B", ...] OPPURE [{nome:"A"}, {name:"B"}, ...]
-      // Se data ha wrapper tipo {items:[...]}, {data:[...]}, aprilo.
-      const unwrap = (x) => {
-        if (Array.isArray(x)) return x;
-        if (x && typeof x === 'object') {
-          for (const k of ['items','data','result','results','rows']) {
-            if (Array.isArray(x[k])) return x[k];
-          }
-        }
-        return x;
-      };
+    function normalizeToNames(data){
+      const unwrap = (x) => Array.isArray(x) ? x : (x && typeof x==='object' && (Array.isArray(x.items)||Array.isArray(x.data)) ? (x.items||x.data) : x);
       const arr = unwrap(data);
-      if (!Array.isArray(arr)) throw new Error('Il JSON deve essere un array o contenere un array in items/data');
+      if (!Array.isArray(arr)) throw new Error('Formato JSON non valido');
       const out = [];
-      for (const it of arr) {
-        if (it == null) continue;
-        if (typeof it === 'string') { out.push(it.trim()); continue; }
-        if (typeof it === 'object') {
-          // prova varie chiavi plausibili
-          const keys = ['nome','name','denominazione','struttura','label','value','titolo'];
-          let found = null;
-          for (const k of keys) {
-            if (typeof it[k] === 'string' && it[k].trim()) { found = it[k].trim(); break; }
-          }
-          if (!found) {
-            // fallback: prima proprietà stringa
-            for (const k in it) { if (typeof it[k] === 'string' && it[k].trim()) { found = it[k].trim(); break; } }
-          }
-          if (found) out.push(found);
+      for (const it of arr){
+        if (typeof it === 'string') out.push(it.trim());
+        else if (it && typeof it === 'object'){
+          const cand = ['nome','name','denominazione','struttura','label','value','titolo'];
+          let s = null; for (const k of cand){ if (typeof it[k]==='string' && it[k].trim()){ s = it[k].trim(); break; } }
+          if (!s){ for (const k in it){ if (typeof it[k]==='string' && it[k].trim()){ s = it[k].trim(); break; } } }
+          if (s) out.push(s);
         }
       }
-      // dedup + sort
       return Array.from(new Set(out.filter(Boolean))).sort((a,b)=>a.localeCompare(b));
     }
 
-    // === UI helpers ===
-    function fillSelect() { keySel.innerHTML = TEMP_NAMES.map(k => `<option>${k}</option>`).join(""); }
-    function renderTable() {
-      const map = loadMap();
-      const rows = TEMP_NAMES.map(k => {
-        const v = map[k] ?? "";
-        return `<tr data-k="${k}">
-          <td>${k}</td>
-          <td><input type="text" value="${v.replace(/"/g, '&quot;')}" placeholder="Nome corretto…" /></td>
-          <td class="row-actions">
-            <button class="save-row" title="Salva">💾</button>
-            <button class="clear-row" title="Cancella">🗑️</button>
-          </td>
-        </tr>`;
-      }).join("");
-      tblBody.innerHTML = rows;
-    }
-    function syncValueFromSelect() {
-      const map = loadMap();
-      valInput.value = map[keySel.value] ?? "";
-      msg.textContent = "";
-    }
-    function showOk(text) { msg.textContent = text; setTimeout(()=>msg.textContent="", 1500); }
+    function fillSelect(){ keySel.innerHTML = TEMP_NAMES.map(n=>`<option>${n}</option>`).join(''); }
+    function syncValue(){ const map = loadMap(); valInput.value = map[keySel.value] ?? ''; msg.textContent=''; }
+    function ok(t){ msg.textContent = t; setTimeout(()=> msg.textContent='', 1500); }
 
-    // === Export mapping ===
-    function exportMappingJson() {
-      const map = loadMap();
-      const arr = TEMP_NAMES.map(old => ({ old, new: map[old] ?? "" }));
-      const blob = new Blob([JSON.stringify(arr, null, 2)], { type: 'application/json' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'mapping_case_vacanza.json';
-      a.click();
-      URL.revokeObjectURL(a.href);
-    }
-    function exportMappingCsv() {
-      const map = loadMap();
-      const rows = ['old,new', ...TEMP_NAMES.map(old => `"${old.replaceAll('"','""')}","${(map[old]??"").replaceAll('"','""')}"`)];
-      const blob = new Blob([rows.join('
-')], { type: 'text/csv' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'mapping_case_vacanza.csv';
-      a.click();
-      URL.revokeObjectURL(a.href);
-    }
-
-    // === Caricamento iniziale automatico ===
-    async function loadFromUrl(url) {
-      const res = await fetch(url, { cache: 'no-store' });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
+    async function loadNames(){
+      const res = await fetch(DEFAULT_SRC, { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP '+res.status);
       const data = await res.json();
       TEMP_NAMES = normalizeToNames(data);
       fillSelect();
-      renderTable();
-      syncValueFromSelect();
-      showOk(`Caricati ${TEMP_NAMES.length} nomi`);
+      syncValue();
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      // Carica automaticamente il JSON di default o quello passato via ?src=
-      const urlSrc = new URLSearchParams(location.search).get('src');
-      const src = urlSrc || DEFAULT_SRC;
-      loadFromUrl(src).catch(e => msg.textContent = 'Errore caricamento iniziale: ' + e.message);
+      loadNames().catch(e => msg.textContent = 'Errore caricamento dati');
 
-      // Salvataggi
-      keySel.addEventListener('change', syncValueFromSelect);
+      keySel.addEventListener('change', syncValue);
+      valInput.addEventListener('keydown', (ev)=>{ if(ev.key==='Enter'){ $('#save').click(); }});
       $('#save').addEventListener('click', () => {
         const k = keySel.value.trim();
         const v = valInput.value.trim();
         const map = loadMap();
-        map[k] = v; saveMap(map); renderTable(); showOk('✓ Salvato');
+        map[k] = v; saveMap(map); ok('✓ Salvato');
       });
-      $('#clearOne').addEventListener('click', () => {
-        const k = keySel.value; const map = loadMap(); delete map[k]; saveMap(map);
-        valInput.value = ''; renderTable(); showOk('Chiave rimossa');
-      });
-
-      // Tabella azioni
-      tblBody.addEventListener('click', (e) => {
-        const btn = e.target.closest('button'); if (!btn) return;
-        const tr = e.target.closest('tr'); const k = tr.dataset.k; const input = tr.querySelector('input');
-        const map = loadMap();
-        if (btn.classList.contains('save-row')) { map[k] = input.value.trim(); saveMap(map); if (keySel.value===k) valInput.value = input.value.trim(); showOk('✓ Salvato: ' + k); }
-        if (btn.classList.contains('clear-row')) { delete map[k]; saveMap(map); input.value=''; if (keySel.value===k) valInput.value=''; showOk('Rimossa: ' + k); }
-      });
-
-      // Export
-      $('#exportJson').addEventListener('click', exportMappingJson);
-      $('#exportCsv').addEventListener('click', exportMappingCsv);
     });
-
-    // Nota: se apri il file in locale (file://) il fetch può essere bloccato. Pubblica il sito su HTTPS (GitHub Pages/Netlify/Vercel).
   </script>
 </body>
 </html>

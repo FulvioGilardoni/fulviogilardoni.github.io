@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rinomina Struttura</title>
+  <title>Comune Oliveto Lario</title>
   <style>
     :root {
       --bg: #f6f7fb;
@@ -70,7 +70,7 @@
     <div class="header">
       <div class="logo" aria-hidden="true"></div>
       <div>
-        <h1>Rinomina la tua struttura</h1>
+        <h1>Comune Oliveto Lario</h1>
         <p class="sub">Seleziona la struttura, scrivi il nome reale e premi <strong>Salva</strong>.</p>
       </div>
     </div>
@@ -133,7 +133,23 @@
     function ok(t){ msg.textContent = t; setTimeout(()=> msg.textContent='', 1500); }
 
     async function loadNames(){
-      const res = await fetch(DEFAULT_SRC, { cache: 'no-store' });
+      try{
+        const res = await fetch(DEFAULT_SRC, { cache: 'no-store' });
+        if (!res.ok) throw new Error('HTTP '+res.status);
+        const data = await res.json();
+        TEMP_NAMES = normalizeToNames(data);
+        fillSelect();
+        syncValue();
+        msg.textContent = '';
+      } catch(err){
+        if (location.protocol === 'file:') {
+          msg.textContent = 'Non posso leggere temp_names.json se il file è aperto direttamente. Apri la pagina tramite un indirizzo http/https.';
+        } else {
+          msg.textContent = 'Non riesco a leggere temp_names.json. Verifica che sia nella stessa cartella e accessibile.';
+        }
+        console.warn('loadNames error', err);
+      }
+    });
       if (!res.ok) throw new Error('HTTP '+res.status);
       const data = await res.json();
       TEMP_NAMES = normalizeToNames(data);

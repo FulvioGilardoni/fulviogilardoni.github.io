@@ -59,6 +59,7 @@
     </div>
 
     <footer>Le modifiche restano salvate su questo dispositivo.</footer>
+    <pre id="diag" style="display:none;margin-top:8px;background:#0b1021;color:#cbd5e1;padding:12px;border-radius:12px;overflow:auto;max-height:180px;font-size:.85rem"></pre>
   </main>
 
   <script>
@@ -124,37 +125,38 @@
     function ok(t){ msg.className = 'msg ok'; msg.textContent = t; setTimeout(()=>{ if (msg.classList.contains('ok')) msg.textContent=''; }, 1500); }
 
     async function loadNames(){
-      // Cache-buster per evitare versioni vecchie
-      const url = DEFAULT_SRC + (DEFAULT_SRC.indexOf('?')>-1 ? '&' : '?') + 't=' + Date.now();
-      let txt;
-      try {
-        const res = await fetch(url, { cache:'no-store' });
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        txt = await res.text();
-      } catch(e){
-        msg.className = 'msg err';
-        msg.textContent = 'Impossibile leggere l\'elenco strutture.';
-        console.warn('fetch error', e);
-        return;
-      }
-
-      let data;
-      try { data = JSON.parse(txt); }
-      catch { data = txt.split(/
+      const qsSrc = new URLSearchParams(location.search).get('src');
+      const src = qsSrc || DEFAULT_SRC;
+      const candidates = [src, './temp_names.json', 'temp_names.json'];
+      const diag = document.getElementById('diag');
+      if (diag) { diag.style.display = 'none'; diag.textContent = ''; }
+      let lastErr = null; let lastTxt = '';
+      for (let i=0;i<candidates.length;i++){
+        const u = candidates[i];
+        try {
+          const res = await fetch(u + (u.indexOf('?')>-1?'&':'?') + 't=' + Date.now(), { cache:'no-store' });
+          if (!res.ok) throw new Error('HTTP ' + res.status + ' su ' + u);
+          const text = await res.text(); lastTxt = text.slice(0,200);
+          let data; try { data = JSON.parse(text); } catch { data = text.split(/
 ?
-/).map(function(s){ return s.trim(); }).filter(function(s){ return !!s; }); }
-
-      try {
-        TEMP_NAMES = normalizeToNames(data);
-      } catch(e){
-        msg.className = 'msg err';
-        msg.textContent = 'Formato elenco non valido.';
-        console.warn('normalize error', e);
-        return;
+/).map(s=>s.trim()).filter(Boolean); }
+          TEMP_NAMES = normalizeToNames(data);
+          if (!TEMP_NAMES || TEMP_NAMES.length===0) throw new Error('Lista vuota da ' + u);
+          fillSelect(); if (TEMP_NAMES.length>0) syncValue();
+          msg.className = 'msg ok'; msg.textContent = 'Caricate ' + TEMP_NAMES.length + ' strutture.';
+          return;
+        } catch(e){ lastErr = e; }
       }
+      // se arrivo qui, fallito tutto
+      msg.className = 'msg err';
+      msg.textContent = 'Non riesco a caricare l\'elenco strutture.';
+      if (diag) { diag.style.display = 'block'; diag.textContent = 'DEBUG
+URL provati:
+' + candidates.join('
+') + '
 
-      fillSelect();
-      if (TEMP_NAMES.length>0) syncValue();
+Ultimo errore:
+' + (lastErr && (lastErr.stack || lastErr.message || String(lastErr))); }
     }
 
     document.addEventListener('DOMContentLoaded', function(){

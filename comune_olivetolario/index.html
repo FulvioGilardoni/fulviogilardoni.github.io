@@ -150,49 +150,41 @@
     function ok(t){ msg.className = 'msg ok'; msg.textContent = t; setTimeout(()=> { if (msg.classList.contains('ok')) msg.textContent=''; }, 1500); }
 
     async function loadNames(){
-      // Prova più path comuni se il primo fallisce
-      const candidates = [DEFAULT_SRC, 'temp_names.json', './data/temp_names.json'];
+      // Prova più URL e supporta anche file di testo semplice (una struttura per riga)
+      const candidates = [
+        'https://fulviogilardoni.github.io/comune_olivetolario/temp_names.json',
+        DEFAULT_SRC,
+        location.origin + '/comune_olivetolario/temp_names.json',
+        location.origin + location.pathname.replace(/\/[^/]*$/, '/') + 'temp_names.json',
+        'https://raw.githubusercontent.com/fulviogilardoni/comune_olivetolario/main/temp_names.json'
+      ];
       let lastErr = null;
       for (const url of candidates){
         try {
-          const res = await fetch(url, { cache: 'no-store' });
+          const res = await fetch(url + (url.includes('?') ? '&' : '?') + 't=' + Date.now(), { cache: 'no-store' });
           if (!res.ok) throw new Error('HTTP '+res.status);
-          const data = await res.json();
+          const txt = await res.text();
+          let data;
+          try { data = JSON.parse(txt); }
+          catch { // fallback: testo semplice
+            data = txt.split(/
+?
+/).map(s=>s.trim()).filter(Boolean);
+          }
           TEMP_NAMES = normalizeToNames(data);
+          if (TEMP_NAMES.length === 0) throw new Error('Lista vuota');
           fillSelect();
           syncValue();
           return;
         } catch(e){ lastErr = e; }
       }
-      // Se siamo qui, nessun path ha funzionato
       msg.className = 'msg err';
       if (location.protocol === 'file:') {
-        msg.textContent = 'Non posso leggere temp_names.json se la pagina è aperta come file. Aprila tramite http/https.';
+        msg.textContent = 'Non posso leggere i dati se la pagina è aperta come file. Aprila via http/https.';
       } else {
-        msg.textContent = 'Non riesco a leggere temp_names.json. Verifica path/nome o CORS.';
+        msg.textContent = 'Non riesco a caricare l\'elenco strutture. Controlla l\'URL o il formato del file.';
       }
-      console.warn('Errore caricamento JSON', lastErr);
-    });
-        if (!res.ok) throw new Error('HTTP '+res.status);
-        const data = await res.json();
-        TEMP_NAMES = normalizeToNames(data);
-        fillSelect();
-        syncValue();
-        msg.textContent = '';
-      } catch(err){
-        if (location.protocol === 'file:') {
-          msg.textContent = 'Non posso leggere temp_names.json se il file è aperto direttamente. Apri la pagina tramite un indirizzo http/https.';
-        } else {
-          msg.textContent = 'Non riesco a leggere temp_names.json. Verifica che sia nella stessa cartella e accessibile.';
-        }
-        console.warn('loadNames error', err);
-      }
-    });
-      if (!res.ok) throw new Error('HTTP '+res.status);
-      const data = await res.json();
-      TEMP_NAMES = normalizeToNames(data);
-      fillSelect();
-      syncValue();
+      console.warn('Errore caricamento', lastErr);
     }
 
     document.addEventListener('DOMContentLoaded', () => {

@@ -136,12 +136,27 @@
     }
 
     function fillSelect(){
+      // Costruisci le option con il DOM (niente innerHTML) per evitare errori di parsing
+      // se nei nomi compaiono caratteri speciali o sequenze come </script>
       if (!TEMP_NAMES || TEMP_NAMES.length === 0){
         msg.className = 'msg err';
-        msg.textContent = 'Nessuna struttura trovata nel JSON.';
+        msg.textContent = 'Nessuna struttura trovata nel file.';
         keySel.innerHTML = '';
         return;
       }
+      // Svuota e riempi in modo sicuro
+      while (keySel.firstChild) keySel.removeChild(keySel.firstChild);
+      const frag = document.createDocumentFragment();
+      for (const n of TEMP_NAMES){
+        const opt = document.createElement('option');
+        opt.value = n;
+        opt.textContent = n; // sicuro, niente HTML
+        frag.appendChild(opt);
+      }
+      keySel.appendChild(frag);
+      msg.className = 'msg';
+      msg.textContent = '';
+    }
       keySel.innerHTML = TEMP_NAMES.map(n=>`<option>${n}</option>`).join('');
       msg.className = 'msg';
       msg.textContent = '';

@@ -75,6 +75,7 @@
     const keySel = $('#key');
     const valInput = $('#value');
     const msg = $('#msg');
+    const diag = document.getElementById('diag');
 
     function loadMap(){ try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; } }
     function saveMap(m){ localStorage.setItem(STORAGE_KEY, JSON.stringify(m)); }
@@ -99,6 +100,29 @@
       for (let i=0;i<out.length;i++){ const v=out[i]; if(!set[v]){ set[v]=1; unique.push(v); } }
       unique.sort(function(a,b){ return a.localeCompare(b); });
       return unique;
+    }
+
+    // Parser tollerante per elenchi "alla JS" (con parentesi quadre, virgole e doppi apici)
+    function parseLooseList(text){
+      // ✅ FIX: regex corretta per split su CRLF/LF (niente regex non terminata)
+      const lines = text.split(/\r?\n/);
+      const items = [];
+      for (let i=0;i<lines.length;i++){
+        let s = lines[i].trim();
+        if (!s) continue;
+        // Skippa solo parentesi
+        if (s === '[' || s === ']') continue;
+        // Togli eventuale virgola finale
+        if (s.endsWith(',')) s = s.slice(0, -1);
+        // Togli doppi apici intorno
+        if (s.startsWith('"') && s.endsWith('"')) s = s.slice(1, -1);
+        // Unescape di \" -> "
+        s = s.replace(/\\\"/g, '"');
+        // Filtra ancora parentesi residue
+        s = s.replace(/^\[|\]$/g, '').trim();
+        if (s) items.push(s);
+      }
+      return items;
     }
 
     function fillSelect(){
@@ -128,7 +152,6 @@
       const qsSrc = new URLSearchParams(location.search).get('src');
       const src = qsSrc || DEFAULT_SRC;
       const candidates = [src, './temp_names.json', 'temp_names.json'];
-      const diag = document.getElementById('diag');
       if (diag) { diag.style.display = 'none'; diag.textContent = ''; }
       let lastErr = null; let lastTxt = '';
       for (let i=0;i<candidates.length;i++){
@@ -137,9 +160,13 @@
           const res = await fetch(u + (u.indexOf('?')>-1?'&':'?') + 't=' + Date.now(), { cache:'no-store' });
           if (!res.ok) throw new Error('HTTP ' + res.status + ' su ' + u);
           const text = await res.text(); lastTxt = text.slice(0,200);
-          let data; try { data = JSON.parse(text); } catch { data = text.split(/
-?
-/).map(s=>s.trim()).filter(Boolean); }
+          let data; 
+          try { 
+            data = JSON.parse(text); 
+          } catch { 
+            // Fallback: elenco non-JSON come quello fornito dall'utente (con " e , e [] )
+            data = parseLooseList(text);
+          }
           TEMP_NAMES = normalizeToNames(data);
           if (!TEMP_NAMES || TEMP_NAMES.length===0) throw new Error('Lista vuota da ' + u);
           fillSelect(); if (TEMP_NAMES.length>0) syncValue();
@@ -150,16 +177,47 @@
       // se arrivo qui, fallito tutto
       msg.className = 'msg err';
       msg.textContent = 'Non riesco a caricare l\'elenco strutture.';
-      if (diag) { diag.style.display = 'block'; diag.textContent = 'DEBUG
-URL provati:
-' + candidates.join('
-') + '
+      if (diag) { 
+        diag.style.display = 'block'; 
+        diag.textContent = [
+          'DEBUG',
+          'URL provati:',
+          candidates.join('\n'),
+          '',
+          'Ultimo errore:',
+          (lastErr && (lastErr.stack || lastErr.message || String(lastErr))) || '(n/d)'
+        ].join('\n');
+      }
+    }
 
-Ultimo errore:
-' + (lastErr && (lastErr.stack || lastErr.message || String(lastErr))); }
+    // ——— Self-tests (in console) ———
+    // Nota: i test NON modificano l'interfaccia.
+    function runSelfTests(){
+      try {
+        console.group('SelfTests');
+        // Test esistente 1: dedup/sort
+        const t1 = normalizeToNames(['A','B','A','  C  ']);
+        console.assert(Array.isArray(t1) && t1.length===3 && t1[0]==='A' && t1[2]==='C', 't1 failed', t1);
+        // Test esistente 2: oggetti con chiavi plausibili
+        const t2 = normalizeToNames([{nome:'X'},{name:'Y'},{label:'Z'}]);
+        console.assert(t2.join(',')==='X,Y,Z', 't2 failed', t2);
+        // Test esistente 3: split robusto CRLF/LF
+        const t3 = 'uno\ndue\n\n tre  ';
+        const arr3 = t3.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
+        console.assert(arr3.length===3 && arr3[2]==='tre', 't3 failed', arr3);
+        // ✅ Nuovo test 4: parseLooseList con apici/virgole e parentesi
+        const loose = '[\n  "A",\n  "B \\\"quote\\\"",\n]';
+        const t4 = parseLooseList(loose);
+        console.assert(t4.length===2 && t4[0]==='A' && t4[1]==='B "quote"', 't4 failed', t4);
+        // ✅ Nuovo test 5: integrate fallback -> normalize
+        const t5 = normalizeToNames(parseLooseList('[\n  "Zeta",\n  "Alfa",\n  "Alfa",\n]'));
+        console.assert(t5.length===2 && t5[0]==='Alfa' && t5[1]==='Zeta', 't5 failed', t5);
+        console.groupEnd();
+      } catch(e){ console.warn('SelfTests error', e); }
     }
 
     document.addEventListener('DOMContentLoaded', function(){
+      runSelfTests();
       loadNames();
       keySel.addEventListener('change', syncValue);
       valInput.addEventListener('keydown', function(ev){ if (ev.key==='Enter'){ document.getElementById('save').click(); }});

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <title>Documentazione | CAMT2CSV</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Documentazione CAMT2CSV: come usare la demo e la versione completa.">
+  <style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6;margin:0;color:#111}main,header,footer{max-width:900px;margin:0 auto;padding:24px} pre{background:#f5f5f5;padding:12px;border-radius:8px;overflow:auto}</style>
+</head>
+<body>
+<header>
+  <h1>Documentazione CAMT2CSV</h1>
+  <p>Guida rapida all'uso (DEMO e versione completa).</p>
+</header>
+
+<nav style="max-width:900px;margin:0 auto;padding:0 24px 24px">
+  <a href="./index.html">Home</a> ·
+  <a href="./docs.html">Documentazione</a> ·
+  <a href="./faq.html">FAQ</a> ·
+  <a href="./contacts.html">Contatti</a> ·
+  <a href="./privacy.html">Privacy</a>
+</nav>
+
+<main>
+  <h2>Requisiti</h2>
+  <ul>
+    <li>Windows 10/11 (x64)</li>
+    <li>Nessuna connessione internet richiesta</li>
+  </ul>
+
+  <h2>Download</h2>
+  <p>Scarica dalla pagina <a href="https://github.com/fulviogilardoni/camt2csv/releases">Releases</a> il file <em>camt2csv-demo-win-x64.zip</em>. Verifica l’hash SHA256 riportato nella Release.</p>
+
+  <h2>Installazione</h2>
+  <ol>
+    <li>Estrai lo ZIP in una cartella (es. <code>C:\CAMT2CSV\</code>).</li>
+    <li>Apri il Prompt dei comandi in quella cartella.</li>
+  </ol>
+
+  <h2>Uso</h2>
+  <pre>camt2csv.exe input.xml output.csv
+camt2csv.exe C:\camt\ C:\csv\</pre>
+
+  <h3>Opzioni utili</h3>
+  <ul>
+    <li><code>--out &lt;file|cartella&gt;</code>: percorso di destinazione</li>
+    <li><code>--sep ;|,</code>: separatore CSV (default <code>;</code>)</li>
+    <li><code>--culture it-IT|en-US</code>: formattazione numeri/date</li>
+    <li><code>--single</code>: forza modalità singolo file</li>
+  </ul>
+
+  <h2>Limitazioni DEMO</h2>
+  <p>Elabora fino a <strong>20 righe per file</strong> e lo indica a fine esecuzione.</p>
+
+  <h2>SmartScreen (file non firmato)</h2>
+  <p>Se Windows mostra un avviso: clicca <em>Ulteriori informazioni</em> → <em>Esegui comunque</em>. Assicurati di aver scaricato dalla pagina ufficiale e verifica la firma SHA256 pubblicata nella Release.</p>
+
+  <h2>Formati supportati</h2>
+  <p>Input: CAMT.053 / CAMT.054 (ISO 20022). Output: CSV con separatore <code>;</code>.</p>
+</main>
+
+<footer><p>© 2025 Fulvio Gilardoni</p></footer>
+</body>
+</html>

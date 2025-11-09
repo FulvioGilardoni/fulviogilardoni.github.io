@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <title>Convertitore offline CAMT.053 / CAMT.054 in CSV – Demo | CAMT2CSV</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Trasforma estratti conto SEPA CAMT.053/054 in CSV, 100% offline. Ideale per studi contabili. Demo gratuita (limite 20 righe per file).">
+
+  <!-- JSON-LD Product -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"SoftwareApplication",
+    "name":"CAMT2CSV Converter (Offline)",
+    "operatingSystem":"Windows 10/11 (x64)",
+    "applicationCategory":"FinancialApplication",
+    "description":"Converte estratti conto CAMT.053 / CAMT.054 (ISO 20022) in CSV, completamente offline.",
+    "offers":{
+      "@type":"Offer",
+      "price":"0",
+      "priceCurrency":"EUR"
+    }
+  }
+  </script>
+
+  <!-- GA4 (opzionale): sostituisci G-XXXX con il tuo ID -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} gtag('js', new Date());
+    gtag('config', 'G-XXXX');
+  </script> -->
+
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.5;margin:0;color:#111}
+    header,main,footer{max-width:900px;margin:0 auto;padding:24px}
+    .cta{display:inline-block;padding:12px 18px;border-radius:8px;border:1px solid #111;text-decoration:none;color:#111}
+    .cta:hover{background:#111;color:#fff}
+    pre{background:#f5f5f5;padding:12px;border-radius:8px;overflow:auto}
+    .muted{color:#555}
+  </style>
+</head>
+<body>
+<header>
+  <h1>Convertitore <em>offline</em> CAMT.053 / CAMT.054 → CSV per studi contabili</h1>
+  <p class="muted">Nessun invio dati. 100% offline. Demo gratuita (limite 20 righe per file).</p>
+
+  <!-- Sostituisci l'URL qui sotto con il link all'asset della tua Release DEMO -->
+  <p><a class="cta" id="download" href="https://github.com/TUO-USERNAME/camt2csv/releases/download/v1.0.0-demo/camt2csv-demo-win-x64.zip">Scarica DEMO (Windows x64)</a></p>
+  <p class="muted">SHA256 disponibile nella pagina Release.</p>
+</header>
+
+<nav style="max-width:900px;margin:0 auto;padding:0 24px 24px">
+  <a href="./index.html">Home</a> ·
+  <a href="./docs.html">Documentazione</a> ·
+  <a href="./faq.html">FAQ</a> ·
+  <a href="./contacts.html">Contatti</a> ·
+  <a href="./privacy.html">Privacy</a>
+</nav>
+
+<main>
+  <h2>Come si usa (30 secondi)</h2>
+  <pre>
+1) Scarica e scompatta lo ZIP
+2) Apri "Prompt dei comandi" nella cartella
+3) Esegui:
+   camt2csv.exe input.xml output.csv
+   - oppure -
+   camt2csv.exe C:\camt\ C:\csv\
+  </pre>
+
+  <h3>Caratteristiche principali</h3>
+  <ul>
+    <li>Parsing <strong>CAMT.053 / CAMT.054 (ISO 20022)</strong> → CSV</li>
+    <li>Funzionamento <strong>offline</strong> (nessuna rete, nessuna telemetria)</li>
+    <li>Compatibile con Excel/LibreOffice e gestionali (Teamsystem, Zucchetti, Buffetti, Profis, Banana, ERP)</li>
+    <li>Modalità singolo file o batch su cartella</li>
+  </ul>
+
+  <h3>FAQ</h3>
+  <p><strong>Serve Internet?</strong> No, il software opera totalmente offline.</p>
+  <p><strong>Quante righe elabora la DEMO?</strong> Fino a 20 righe per file (per test). Versione completa senza limiti. <!-- allineato ai tuoi documenti --> </p>
+  <p><strong>Il file EXE è firmato?</strong> Al momento no. Se Windows mostra SmartScreen: clicca <em>Ulteriori informazioni</em> → <em>Esegui comunque</em>. Verifica l’integrità con l’hash SHA256 indicato nella Release.</p>
+  <p><strong>Quali formati supporta?</strong> CAMT.053 e CAMT.054 (ISO 20022); output CSV. </p>
+</main>
+
+<footer>
+  <p class="muted">© 2025 Fulvio Gilardoni • Supporto: fulvio.gilardoni@gmail.com • Licenza d’uso inclusa nello ZIP</p>
+</footer>
+
+<script>
+  // Tracciamento click download su GA4 (se attivo)
+  document.getElementById('download').addEventListener('click', function(){
+    if (typeof gtag === 'function') gtag('event', 'download_click', {item:'camt2csv-demo-win-x64.zip'});
+  });
+</script>
+</body>
+</html>

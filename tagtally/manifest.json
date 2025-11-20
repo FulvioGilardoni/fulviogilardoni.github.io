@@ -1,0 +1,9 @@
+{
+  "name": "TagTally",
+  "short_name": "TagTally",
+  "start_url": "/tagtally/",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "display": "standalone",
+  "icons": []
+}

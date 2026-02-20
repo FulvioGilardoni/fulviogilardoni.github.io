@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy - Replay</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --text: #0f172a;
+            --text-secondary: #475569;
+            --bg: #ffffff;
+            --border: #e2e8f0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem 4rem;
+        }
+        .lang-switch {
+            text-align: right;
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+        }
+        .lang-switch a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .lang-switch a:hover { text-decoration: underline; }
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .last-update {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+        }
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        p, ul, ol {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        ul, ol { padding-left: 1.5rem; }
+        li { margin-bottom: 0.5rem; }
+        a { color: var(--primary); }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0 1.5rem;
+            font-size: 0.875rem;
+        }
+        th, td {
+            border: 1px solid var(--border);
+            padding: 0.625rem 0.875rem;
+            text-align: left;
+        }
+        th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: var(--text);
+        }
+        td { color: var(--text-secondary); }
+        hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 2rem 0;
+        }
+        @media (max-width: 640px) {
+            .container { padding: 2rem 1.25rem; }
+            h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="lang-switch">
+        <a href="privacy-policy-it.html">Versione italiana</a>
+    </div>
+
+    <h1>Privacy Policy</h1>
+    <p class="last-update">Last updated: [DATE]</p>
+
+    <p>This privacy policy describes how <strong>[COMPANY NAME / FULL NAME]</strong> ("we", "the Controller") collects, uses, and protects the personal data of users of the <strong>Replay</strong> service (hereinafter "the Service"), accessible at <strong>[SERVICE URL]</strong>.</p>
+
+    <p>Personal data is processed in compliance with EU Regulation 2016/679 (GDPR) and applicable Italian data protection legislation.</p>
+
+    <h2>1. Data Controller</h2>
+    <ul>
+        <li><strong>Name:</strong> [COMPANY NAME / FULL NAME]</li>
+        <li><strong>Registered address:</strong> [ADDRESS]</li>
+        <li><strong>Email:</strong> [EMAIL]</li>
+        <li><strong>PEC:</strong> [PEC, if applicable]</li>
+        <li><strong>VAT number:</strong> [VAT NUMBER, if applicable]</li>
+    </ul>
+
+    <h2>2. Personal data collected</h2>
+    <p>The Service collects the following categories of personal data:</p>
+
+    <h3 style="font-size:1.0625rem; margin-top:1rem;">a) Data provided by the user</h3>
+    <ul>
+        <li><strong>Email address</strong> — used for registration and authentication.</li>
+        <li><strong>Password</strong> — stored exclusively in encrypted form (BCrypt hash). We never have access to the plaintext password.</li>
+    </ul>
+
+    <h3 style="font-size:1.0625rem; margin-top:1rem;">b) Data generated through use of the Service</h3>
+    <ul>
+        <li><strong>Uploaded files</strong> — CSV and XLSX files uploaded for comparison. Files are <strong>automatically deleted</strong> after the diff calculation; they are not permanently stored.</li>
+        <li><strong>Project metadata</strong> — project name, column schema, comparison results (diff JSON), counters, timestamps.</li>
+    </ul>
+
+    <h3 style="font-size:1.0625rem; margin-top:1rem;">c) Technical data</h3>
+    <ul>
+        <li><strong>Session cookie</strong> (<code>ReplayAuth</code>) — required for authentication.</li>
+        <li><strong>System logs</strong> — IP address, browser type, request timestamps (retained for security and debugging purposes).</li>
+        <li><strong>Analytics data</strong> — only with prior consent, via Azure Application Insights (load times, errors, performance).</li>
+    </ul>
+
+    <h2>3. Purposes and legal basis</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Purpose</th>
+                <th>Data processed</th>
+                <th>Legal basis</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Service provision (registration, login, file comparison)</td>
+                <td>Email, password hash, files, project metadata</td>
+                <td>Performance of a contract (Art. 6.1.b GDPR)</td>
+            </tr>
+            <tr>
+                <td>Security and abuse prevention</td>
+                <td>System logs, IP</td>
+                <td>Legitimate interest (Art. 6.1.f GDPR)</td>
+            </tr>
+            <tr>
+                <td>Service analysis and improvement</td>
+                <td>Anonymous analytics data</td>
+                <td>Consent (Art. 6.1.a GDPR)</td>
+            </tr>
+            <tr>
+                <td>Service communications</td>
+                <td>Email</td>
+                <td>Performance of a contract (Art. 6.1.b GDPR)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>4. Data retention</h2>
+    <ul>
+        <li><strong>User account</strong> — retained until the account is deleted by the user or until the Service ceases.</li>
+        <li><strong>Uploaded files</strong> — automatically deleted after diff calculation (within 24 hours of upload).</li>
+        <li><strong>Comparison results (diffs)</strong> — retained for the lifetime of the account.</li>
+        <li><strong>System logs</strong> — retained for a maximum of 90 days.</li>
+    </ul>
+
+    <h2>5. Data recipients</h2>
+    <p>Personal data may be shared with:</p>
+    <ul>
+        <li><strong>Microsoft Azure</strong> — application hosting, database and storage (EU datacenter).</li>
+        <li><strong>Law enforcement</strong> — only upon request from judicial authorities.</li>
+    </ul>
+    <p>We do not sell, rent, or share your data with third parties for marketing purposes.</p>
+
+    <h2>6. Data transfers</h2>
+    <p>Data is hosted on Microsoft Azure servers located in the <strong>European Union</strong>. No transfers are made outside the European Economic Area (EEA).</p>
+
+    <h2 id="cookie">7. Cookies</h2>
+    <p>The Service uses the following cookies:</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Cookie</th>
+                <th>Type</th>
+                <th>Purpose</th>
+                <th>Duration</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>ReplayAuth</code></td>
+                <td>Technical (essential)</td>
+                <td>User authentication</td>
+                <td>30 days</td>
+            </tr>
+            <tr>
+                <td><code>replay_cookie_consent</code></td>
+                <td>Technical (essential)</td>
+                <td>Cookie preference storage (localStorage)</td>
+                <td>Indefinite</td>
+            </tr>
+            <tr>
+                <td><code>ai_session</code> / <code>ai_user</code></td>
+                <td>Analytics (with consent)</td>
+                <td>Azure Application Insights — performance monitoring</td>
+                <td>30 min / 1 year</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>Essential technical cookies do not require consent as they are necessary for the Service to function. Analytics cookies are only activated after explicit user consent via the dedicated banner.</p>
+    <p>You can revoke analytics cookie consent at any time from the "Account" page or by clearing your browser data.</p>
+
+    <h2>8. Your rights</h2>
+    <p>Under Articles 15-22 of the GDPR, you have the right to:</p>
+    <ul>
+        <li><strong>Access</strong> — obtain confirmation of processing and access your data.</li>
+        <li><strong>Rectification</strong> — correct inaccurate or incomplete data.</li>
+        <li><strong>Erasure</strong> ("right to be forgotten") — request deletion of your data.</li>
+        <li><strong>Restriction</strong> — restrict processing in certain cases.</li>
+        <li><strong>Portability</strong> — receive your data in a structured, machine-readable format.</li>
+        <li><strong>Objection</strong> — object to processing based on legitimate interest.</li>
+        <li><strong>Withdrawal of consent</strong> — withdraw consent at any time, without affecting the lawfulness of prior processing.</li>
+    </ul>
+    <p>To exercise your rights, contact the Controller at: <strong>[EMAIL]</strong>.</p>
+
+    <h2>9. Right to lodge a complaint</h2>
+    <p>You have the right to lodge a complaint with the <strong>Italian Data Protection Authority</strong> (Garante per la protezione dei dati personali):</p>
+    <ul>
+        <li>Website: <a href="https://www.garanteprivacy.it" target="_blank" rel="noopener">www.garanteprivacy.it</a></li>
+        <li>Email: <a href="mailto:protocollo@gpdp.it">protocollo@gpdp.it</a></li>
+    </ul>
+
+    <h2>10. Security</h2>
+    <p>We adopt appropriate technical and organizational measures to protect personal data, including:</p>
+    <ul>
+        <li>HTTPS encryption for all communications</li>
+        <li>BCrypt password hashing</li>
+        <li>HttpOnly and Secure cookie attributes</li>
+        <li>Anti-spam protection (rate limiting)</li>
+        <li>Automatic deletion of uploaded files after processing</li>
+    </ul>
+
+    <h2>11. Changes to this policy</h2>
+    <p>The Controller reserves the right to modify this policy at any time. Changes will be published on this page with an updated date. Continued use of the Service after publication of changes constitutes acceptance thereof.</p>
+
+    <hr />
+    <p style="font-size:0.8125rem; text-align:center; color:var(--text-secondary);">
+        &copy; [YEAR] [COMPANY NAME / FULL NAME] — Replay
+    </p>
+</div>
+</body>
+</html>

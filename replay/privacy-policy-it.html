@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy - Replay</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --text: #0f172a;
+            --text-secondary: #475569;
+            --bg: #ffffff;
+            --border: #e2e8f0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem 4rem;
+        }
+        .lang-switch {
+            text-align: right;
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+        }
+        .lang-switch a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .lang-switch a:hover { text-decoration: underline; }
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+        .last-update {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+        }
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            color: var(--text);
+        }
+        p, ul, ol {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        ul, ol { padding-left: 1.5rem; }
+        li { margin-bottom: 0.5rem; }
+        a { color: var(--primary); }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0 1.5rem;
+            font-size: 0.875rem;
+        }
+        th, td {
+            border: 1px solid var(--border);
+            padding: 0.625rem 0.875rem;
+            text-align: left;
+        }
+        th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: var(--text);
+        }
+        td { color: var(--text-secondary); }
+        .highlight {
+            background: #eff6ff;
+            border-left: 3px solid var(--primary);
+            padding: 1rem 1.25rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        .highlight p { margin: 0; }
+        hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 2rem 0;
+        }
+        @media (max-width: 640px) {
+            .container { padding: 2rem 1.25rem; }
+            h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="lang-switch">
+        <a href="privacy-policy-en.html">English version</a>
+    </div>
+
+    <h1>Privacy Policy</h1>
+    <p class="last-update">Ultimo aggiornamento: [DATA]</p>
+
+    <p>La presente informativa sulla privacy descrive come <strong>[RAGIONE SOCIALE / NOME E COGNOME]</strong> ("noi", "il Titolare") raccoglie, utilizza e protegge i dati personali degli utenti del servizio <strong>Replay</strong> (di seguito "il Servizio"), accessibile all'indirizzo <strong>[URL DEL SERVIZIO]</strong>.</p>
+
+    <p>Il trattamento dei dati personali avviene nel rispetto del Regolamento (UE) 2016/679 (GDPR) e della normativa italiana vigente in materia di protezione dei dati personali.</p>
+
+    <h2>1. Titolare del trattamento</h2>
+    <ul>
+        <li><strong>Denominazione:</strong> [RAGIONE SOCIALE / NOME E COGNOME]</li>
+        <li><strong>Sede legale:</strong> [INDIRIZZO]</li>
+        <li><strong>Email:</strong> [EMAIL]</li>
+        <li><strong>PEC:</strong> [PEC, se applicabile]</li>
+        <li><strong>P.IVA:</strong> [P.IVA, se applicabile]</li>
+    </ul>
+
+    <h2>2. Dati personali raccolti</h2>
+    <p>Il Servizio raccoglie le seguenti categorie di dati personali:</p>
+
+    <h3 style="font-size:1.0625rem; margin-top:1rem;">a) Dati forniti dall'utente</h3>
+    <ul>
+        <li><strong>Indirizzo email</strong> — utilizzato per la registrazione e l'autenticazione.</li>
+        <li><strong>Password</strong> — conservata esclusivamente in forma crittografata (hash BCrypt). Non abbiamo mai accesso alla password in chiaro.</li>
+    </ul>
+
+    <h3 style="font-size:1.0625rem; margin-top:1rem;">b) Dati generati dall'uso del Servizio</h3>
+    <ul>
+        <li><strong>File caricati</strong> — CSV e XLSX caricati dall'utente per il confronto. I file vengono <strong>eliminati automaticamente</strong> dopo il calcolo delle differenze; non vengono archiviati permanentemente.</li>
+        <li><strong>Metadati dei progetti</strong> — nome progetto, schema colonne, risultati dei confronti (diff JSON), contatori, timestamp.</li>
+    </ul>
+
+    <h3 style="font-size:1.0625rem; margin-top:1rem;">c) Dati tecnici</h3>
+    <ul>
+        <li><strong>Cookie tecnico di sessione</strong> (<code>ReplayAuth</code>) — necessario per l'autenticazione.</li>
+        <li><strong>Log di sistema</strong> — indirizzo IP, tipo di browser, timestamp delle richieste (conservati per finalit&agrave; di sicurezza e debug).</li>
+        <li><strong>Dati analitici</strong> — solo previo consenso, tramite Azure Application Insights (tempo di caricamento, errori, performance).</li>
+    </ul>
+
+    <h2>3. Finalit&agrave; e base giuridica del trattamento</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Finalit&agrave;</th>
+                <th>Dati trattati</th>
+                <th>Base giuridica</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Erogazione del Servizio (registrazione, login, confronto file)</td>
+                <td>Email, password hash, file, metadati progetti</td>
+                <td>Esecuzione del contratto (art. 6.1.b GDPR)</td>
+            </tr>
+            <tr>
+                <td>Sicurezza e prevenzione abusi</td>
+                <td>Log di sistema, IP</td>
+                <td>Legittimo interesse (art. 6.1.f GDPR)</td>
+            </tr>
+            <tr>
+                <td>Analisi e miglioramento del Servizio</td>
+                <td>Dati analitici anonimi</td>
+                <td>Consenso (art. 6.1.a GDPR)</td>
+            </tr>
+            <tr>
+                <td>Comunicazioni di servizio</td>
+                <td>Email</td>
+                <td>Esecuzione del contratto (art. 6.1.b GDPR)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>4. Conservazione dei dati</h2>
+    <ul>
+        <li><strong>Account utente</strong> — conservato fino alla cancellazione dell'account da parte dell'utente o fino alla cessazione del Servizio.</li>
+        <li><strong>File caricati</strong> — eliminati automaticamente dopo il calcolo delle differenze (entro 24 ore dall'upload).</li>
+        <li><strong>Risultati dei confronti (diff)</strong> — conservati per l'intera durata dell'account.</li>
+        <li><strong>Log di sistema</strong> — conservati per un massimo di 90 giorni.</li>
+    </ul>
+
+    <h2>5. Destinatari dei dati</h2>
+    <p>I dati personali possono essere comunicati a:</p>
+    <ul>
+        <li><strong>Microsoft Azure</strong> — hosting dell'applicazione, database e storage (datacenter in UE).</li>
+        <li><strong>Forze dell'ordine</strong> — esclusivamente su richiesta dell'autorit&agrave; giudiziaria.</li>
+    </ul>
+    <p>Non vendiamo, affittiamo o condividiamo i tuoi dati con terze parti per finalit&agrave; di marketing.</p>
+
+    <h2>6. Trasferimento dei dati</h2>
+    <p>I dati sono ospitati su server Microsoft Azure situati nell'<strong>Unione Europea</strong>. Non vengono trasferiti al di fuori dello Spazio Economico Europeo (SEE).</p>
+
+    <h2 id="cookie">7. Cookie</h2>
+    <p>Il Servizio utilizza i seguenti cookie:</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Cookie</th>
+                <th>Tipo</th>
+                <th>Scopo</th>
+                <th>Durata</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>ReplayAuth</code></td>
+                <td>Tecnico (essenziale)</td>
+                <td>Autenticazione dell'utente</td>
+                <td>30 giorni</td>
+            </tr>
+            <tr>
+                <td><code>replay_cookie_consent</code></td>
+                <td>Tecnico (essenziale)</td>
+                <td>Memorizzazione preferenze cookie (localStorage)</td>
+                <td>Indefinita</td>
+            </tr>
+            <tr>
+                <td><code>ai_session</code> / <code>ai_user</code></td>
+                <td>Analitico (previo consenso)</td>
+                <td>Azure Application Insights — monitoraggio performance</td>
+                <td>30 min / 1 anno</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>I cookie tecnici essenziali non richiedono consenso in quanto necessari al funzionamento del Servizio. I cookie analitici vengono attivati solo dopo il consenso esplicito dell'utente tramite il banner dedicato.</p>
+    <p>Puoi revocare il consenso ai cookie analitici in qualsiasi momento dalla pagina "Account" o cancellando i dati del browser.</p>
+
+    <h2>8. Diritti dell'interessato</h2>
+    <p>Ai sensi degli articoli 15-22 del GDPR, l'utente ha il diritto di:</p>
+    <ul>
+        <li><strong>Accesso</strong> — ottenere conferma dell'esistenza di un trattamento e accedere ai propri dati.</li>
+        <li><strong>Rettifica</strong> — correggere dati inesatti o incompleti.</li>
+        <li><strong>Cancellazione</strong> ("diritto all'oblio") — richiedere la cancellazione dei propri dati.</li>
+        <li><strong>Limitazione</strong> — limitare il trattamento in determinati casi.</li>
+        <li><strong>Portabilit&agrave;</strong> — ricevere i propri dati in un formato strutturato e leggibile.</li>
+        <li><strong>Opposizione</strong> — opporsi al trattamento basato sul legittimo interesse.</li>
+        <li><strong>Revoca del consenso</strong> — revocare in qualsiasi momento il consenso prestato, senza pregiudizio per la liceit&agrave; del trattamento precedente.</li>
+    </ul>
+    <p>Per esercitare i propri diritti, contattare il Titolare all'indirizzo email: <strong>[EMAIL]</strong>.</p>
+
+    <h2>9. Reclamo all'Autorit&agrave; di controllo</h2>
+    <p>L'utente ha il diritto di proporre reclamo al <strong>Garante per la protezione dei dati personali</strong>:</p>
+    <ul>
+        <li>Sito web: <a href="https://www.garanteprivacy.it" target="_blank" rel="noopener">www.garanteprivacy.it</a></li>
+        <li>Email: <a href="mailto:protocollo@gpdp.it">protocollo@gpdp.it</a></li>
+    </ul>
+
+    <h2>10. Sicurezza</h2>
+    <p>Adottiamo misure tecniche e organizzative adeguate per proteggere i dati personali, tra cui:</p>
+    <ul>
+        <li>Crittografia HTTPS per tutte le comunicazioni</li>
+        <li>Hashing delle password con algoritmo BCrypt</li>
+        <li>Cookie con attributi HttpOnly e Secure</li>
+        <li>Protezione anti-spam (rate limiting)</li>
+        <li>Eliminazione automatica dei file caricati dopo l'elaborazione</li>
+    </ul>
+
+    <h2>11. Modifiche alla presente informativa</h2>
+    <p>Il Titolare si riserva il diritto di modificare la presente informativa in qualsiasi momento. Le modifiche saranno pubblicate su questa pagina con indicazione della data di ultimo aggiornamento. L'uso continuato del Servizio dopo la pubblicazione delle modifiche costituisce accettazione delle stesse.</p>
+
+    <hr />
+    <p style="font-size:0.8125rem; text-align:center; color:var(--text-secondary);">
+        &copy; [ANNO] [RAGIONE SOCIALE / NOME E COGNOME] — Replay
+    </p>
+</div>
+</body>
+</html>

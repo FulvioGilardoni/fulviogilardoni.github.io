@@ -121,7 +121,7 @@
 
     <h3 style="font-size:1.0625rem; margin-top:1rem;">b) Data generated through use of the Service</h3>
     <ul>
-        <li><strong>Uploaded files</strong> — CSV and XLSX files uploaded for comparison. Files are <strong>automatically deleted</strong> after the diff calculation; they are not permanently stored.</li>
+        <li><strong>Uploaded files</strong> — CSV and XLSX files uploaded for comparison. Files are retained for the lifetime of the project to enable comparison with future versions. They are permanently deleted when the project or the user account is deleted.</li>
         <li><strong>Project metadata</strong> — project name, column schema, comparison results (diff JSON), counters, timestamps.</li>
     </ul>
 
@@ -173,14 +173,14 @@
     <h2>4. Data retention</h2>
     <ul>
         <li><strong>User account</strong> — retained until the account is deleted by the user or until the Service ceases.</li>
-        <li><strong>Uploaded files</strong> — automatically deleted after diff calculation (within 24 hours of upload).</li>
+        <li><strong>Uploaded files</strong> — retained for the lifetime of the project; permanently deleted upon project or account deletion.</li>
         <li><strong>Comparison results (diffs)</strong> — retained for the lifetime of the account.</li>
         <li><strong>System logs</strong> — retained for a maximum of 90 days.</li>
     </ul>
 
     <h2>5. Necessity of providing data</h2>
     <p>Providing your email address and password is <strong>required</strong> in order to create an account and use the Service. Failure to provide this data makes it impossible to register and access the Service.</p>
-    <p>Uploading files is required to use the comparison feature. Files are automatically deleted after processing.</p>
+    <p>Uploading files is required to use the comparison feature. Files are retained for the lifetime of the project and deleted upon project or account removal.</p>
 
     <h2>6. Automated decision-making and profiling</h2>
     <p>The Service does <strong>not</strong> carry out profiling or automated decision-making that produces legal effects or similarly significant effects on data subjects within the meaning of Art. 22 GDPR.</p>
@@ -191,7 +191,7 @@
     <h2>8. Data recipients</h2>
     <p>Personal data may be shared with:</p>
     <ul>
-        <li><strong>Microsoft Azure</strong> — application hosting and temporary file storage (Azure Blob Storage, EU datacenter).</li>
+        <li><strong>Microsoft Azure</strong> — application hosting and file storage (Azure Blob Storage, EU datacenter).</li>
         <li><strong>Neon Tech Inc.</strong> — cloud PostgreSQL database where user accounts, project metadata, and comparison results are stored (<a href="https://neon.tech/privacy" target="_blank" rel="noopener">Neon Privacy Policy</a>). Data is hosted in European Union datacenters.</li>
         <li><strong>Paddle.com Market Limited</strong> — payment processor for subscription management. Paddle processes the user's email address and billing data as Merchant of Record (<a href="https://www.paddle.com/legal/privacy" target="_blank" rel="noopener">Paddle Privacy Policy</a>).</li>
         <li><strong>Law enforcement</strong> — only upon request from judicial authorities.</li>
@@ -263,7 +263,7 @@
         <li>BCrypt password hashing</li>
         <li>HttpOnly and Secure cookie attributes</li>
         <li>Anti-spam protection (rate limiting)</li>
-        <li>Automatic deletion of uploaded files after processing</li>
+        <li>File deletion upon project or account removal</li>
     </ul>
 
     <h2>14. Changes to this policy</h2>

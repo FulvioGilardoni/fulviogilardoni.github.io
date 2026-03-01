@@ -1,25 +1,64 @@
 <!doctype html>
 <html lang="it">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fulvio Gilardoni – Documentazione App</title>
 <style>
-  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Arial,sans-serif;line-height:1.6;margin:2rem;max-width:860px}
-  h1{margin:.2em 0 .6em}
-  @media (prefers-color-scheme: dark){body{background:#0b0b0b;color:#eaeaea}}
+  body{
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Arial,sans-serif;
+    line-height:1.6;margin:0;padding:2.5rem;max-width:860px;margin:0 auto;
+    color:#1a1a1a;background:#fafafa;
+  }
+  h1{margin:.2em 0 .3em;font-size:1.8em}
+  .subtitle{color:#555;margin-bottom:2em}
+  .app-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:.6rem}
+  .app-list a{
+    display:block;padding:1rem 1.2rem;
+    border:1px solid #e0e0e0;border-radius:8px;
+    text-decoration:none;color:inherit;
+    transition:background .15s,border-color .15s,box-shadow .15s;
+  }
+  .app-list a:hover{background:#fff;border-color:#bbb;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+  .app-name{font-weight:600;color:#2563eb}
+  .app-desc{font-size:.9em;color:#555;margin-left:.3em}
+  .footer{margin-top:3em;font-size:.85em;color:#999}
+  @media (prefers-color-scheme: dark){
+    body{background:#0b0b0b;color:#eaeaea}
+    .subtitle{color:#9aa}
+    .app-list a{border-color:#2a2a2a;background:#141414}
+    .app-list a:hover{background:#1a1a1a;border-color:#444;box-shadow:0 2px 8px rgba(255,255,255,.04)}
+    .app-name{color:#60a5fa}
+    .app-desc{color:#9aa}
+    .footer{color:#666}
+  }
 </style>
+</head>
+<body>
 
 <h1>Documentazione App</h1>
-<p>Seleziona un'applicazione per visualizzare la documentazione:</p>
+<p class="subtitle">Seleziona un'applicazione per visualizzare la documentazione:</p>
 
-<ul>
-  <li><a href="/tagtally/">TagTally – Contatore su tag NFC</a></li>
-  <li><a href="/ospitup/">OspitUp - Invio rapido ospiti ad AlloggiatiWeb e Ross1000</a></li>
-  <li><a href="/camt2csv/">Camt2Csv - Convertitore offline CAMT.053 / CAMT.054 in CSV</a></li>
+<ul class="app-list">
+  <li><a href="/tagtally/">
+    <span class="app-name">TagTally</span>
+    <span class="app-desc">– Contatore su tag NFC</span>
+  </a></li>
+  <li><a href="/replay/">
+    <span class="app-name">Replay</span>
+    <span class="app-desc">– Confronto versioni CSV e Excel</span>
+  </a></li>
+  <li><a href="/ospitup/">
+    <span class="app-name">OspitUp</span>
+    <span class="app-desc">– Invio rapido ospiti ad AlloggiatiWeb e Ross1000</span>
+  </a></li>
+  <li><a href="/camt2csv/">
+    <span class="app-name">Camt2Csv</span>
+    <span class="app-desc">– Convertitore offline CAMT.053 / CAMT.054 in CSV</span>
+  </a></li>
 </ul>
 
-<p style="margin-top:3em;font-size:.85em;color:#777">
-Creato da Fulvio Gilardoni
-</p>
+<p class="footer">Creato da Fulvio Gilardoni</p>
 
+</body>
 </html>

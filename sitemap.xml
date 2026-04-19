@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <sitemap>
+    <loc>https://fulviogilardoni.github.io/ospitup/sitemap.xml</loc>
+  </sitemap>
+
+  <sitemap>
+    <loc>https://fulviogilardoni.github.io/tagtally/sitemap.xml</loc>
+  </sitemap>
+
+  <sitemap>
+    <loc>https://fulviogilardoni.github.io/camt2csv/sitemap.xml</loc>
+  </sitemap>
+
+  <sitemap>
+    <loc>https://fulviogilardoni.github.io/tabledealer/sitemap.xml</loc>
+  </sitemap>
+
+</sitemapindex>
